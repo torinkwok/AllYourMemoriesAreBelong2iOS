@@ -18,17 +18,24 @@
 - ( void ) swizzling_setDelegate: ( id <UIApplicationDelegate> )_New;
 @end // UIApplication + MWISwizzling
 
+static void swizzle_stick ( Class _LhsClass, SEL _LhsSelector, Class _RhsClass, SEL _RhsSelector )
+    {
+    Method lhsMethod = class_getInstanceMethod( _LhsClass, _LhsSelector );
+    IMP lhsImp = method_getImplementation( lhsMethod );
+
+    Method rhsMethod = class_getInstanceMethod( _RhsClass, _RhsSelector );
+    IMP rhsImp = method_getImplementation( rhsMethod );
+
+    method_setImplementation( lhsMethod, rhsImp );
+    method_setImplementation( rhsMethod, lhsImp );
+    }
+
 __attribute__( ( constructor ) )
 static void swizzling_stick ()
     {
-    Method oldMethod = class_getInstanceMethod( [ UIApplication class ], @selector( setDelegate: ) );
-    IMP oldImp = method_getImplementation( oldMethod );
-
-    Method newMethod = class_getInstanceMethod( [ UIApplication class ], @selector( swizzling_setDelegate: ) );
-    IMP newImp = method_getImplementation( newMethod );
-
-    method_setImplementation( oldMethod, newImp );
-    method_setImplementation( newMethod, oldImp );
+    swizzle_stick( [ UIApplication class ], @selector( setDelegate: )
+                 , [ UIApplication class ], @selector( swizzling_setDelegate: )
+                 );
     }
 
 #pragma clang diagnostic push
@@ -81,15 +88,25 @@ void static* const kKVOControllerAssKey = @"kKVOControllerAssKey";
             );
         }
     else
+        {
+        SEL kvoNativeCallback = @selector( observeValueForKeyPath:ofObject:change:context: );
+        SEL kvoSwizzledCallback = @selector( swizzling_observeValueForKeyPath:ofObject:change:context: );
+
+        if ( [ _NewDelegate respondsToSelector: kvoNativeCallback ] )
+            swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ UIApplication class ], kvoSwizzledCallback );
+
         [ sharedSession addObserver: _NewDelegate forKeyPath: keypath options: kvoOptions context: &asObserverContext ];
+        }
 
     return [ self swizzling_setDelegate: _NewDelegate ];
     }
 
-- ( void ) observeValueForKeyPath: ( NSString* )_KeyPath ofObject: ( id )_Object change: ( NSDictionary <NSString*, id>* )_Change context: ( void* )_Context
+- ( void ) swizzling_observeValueForKeyPath: ( NSString* )_KeyPath ofObject: ( id )_Object change: ( NSDictionary <NSString*, id>* )_Change context: ( void* )_Context
     {
     if ( _Context == asObserverContext )
         TriggerMemoryWarning_();
+
+    [ self swizzling_observeValueForKeyPath: _KeyPath ofObject: _Object change: _Change context: _Context ];
     }
 
 #pragma clang diagnostic pop
