@@ -16,10 +16,10 @@
 
 @implementation AppDelegate
 
-//- ( void ) observeValueForKeyPath: ( NSString* )_KeyPath ofObject: ( id )_Object change: ( NSDictionary <NSString*, id>* )_Change context: ( void* )_Context
-//    {
-//    NSLog( @"matrix (invoking from internation of %@", self );
-//    }
+- ( void ) observeValueForKeyPath: ( NSString* )_KeyPath ofObject: ( id )_Object change: ( NSDictionary <NSString*, id>* )_Change context: ( void* )_Context
+    {
+    NSLog( @"matrix (invoking from internation of %@", self );
+    }
 
 - ( void ) applicationDidReceiveMemoryWarning:(UIApplication *)application
     {

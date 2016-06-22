@@ -14,6 +14,11 @@
 
 @implementation AppDelegate
 
+- ( void ) applicationDidReceiveMemoryWarning:(UIApplication *)application
+    {
+    NSLog( @"DID RECEIVE MEMORY WARNING" );
+    }
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     return YES;

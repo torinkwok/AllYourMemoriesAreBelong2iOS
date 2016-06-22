@@ -17,10 +17,10 @@
 
 // UIApplication + MWISwizzling
 @interface UIApplication ( MWISwizzling )
-- ( void ) swizzling_setDelegate: ( id <UIApplicationDelegate> )_New;
+- ( void ) mwi_swizzling_setDelegate: ( id <UIApplicationDelegate> )_New;
 @end // UIApplication + MWISwizzling
 
-static void swizzle_stick ( Class _LhsClass, SEL _LhsSelector, Class _RhsClass, SEL _RhsSelector )
+static void mwi_swizzle_stick ( Class _LhsClass, SEL _LhsSelector, Class _RhsClass, SEL _RhsSelector )
     {
     Method lhsMethod = class_getInstanceMethod( _LhsClass, _LhsSelector );
     IMP lhsImp = method_getImplementation( lhsMethod );
@@ -33,35 +33,36 @@ static void swizzle_stick ( Class _LhsClass, SEL _LhsSelector, Class _RhsClass, 
     }
 
 __attribute__( ( constructor ) )
-static void swizzling_stick ()
+static void mwi_swizzling_factory ()
     {
-    swizzle_stick( [ UIApplication class ], @selector( setDelegate: )
-                 , [ UIApplication class ], @selector( swizzling_setDelegate: ) );
+    mwi_swizzle_stick( [ UIApplication class ], @selector( setDelegate: )
+                 , [ UIApplication class ], @selector( mwi_swizzling_setDelegate: ) );
     }
 
-void ( ^TriggerMemoryWarning_ )() = ^{
+static void mwi_trigger_memory_warning ()
+    {
     dispatch_async( dispatch_get_main_queue(), ( dispatch_block_t )^{
         [ [ UIApplication sharedApplication ] performSelector: @selector( _performMemoryWarning ) ];
         } );
-    };
+    }
 
 void static* asObserverContext = &asObserverContext;
-Class static FBKVOControllerClass = nil;
 void static* const kKVOControllerAssKey = @"kKVOControllerAssKey";
 
-id kvo_callback_imp ( id _Sender
-                    , SEL _Selector
-                    , NSString* _KeyPath
-                    , id _Object
-                    , NSDictionary <NSString*, id>* _Change
-                    , void* _Context )
+static id mwi_kvo_callback_imp
+    ( id _Sender
+    , SEL _Selector
+    , NSString* _KeyPath
+    , id _Object
+    , NSDictionary <NSString*, id>* _Change
+    , void* _Context )
     {
     if ( _Context == asObserverContext )
-        TriggerMemoryWarning_();
+        mwi_trigger_memory_warning();
     return nil;
     }
 
-static BOOL check_if_object_overrides_selector( id _Object, SEL _Selector )
+static BOOL mwi_check_if_object_overrides_selector( id _Object, SEL _Selector )
     {
     Class objSuperClass = [ _Object superclass ];;
     BOOL isMethodOverridden = NO;
@@ -82,15 +83,19 @@ static BOOL check_if_object_overrides_selector( id _Object, SEL _Selector )
 // UIApplication + MWISwizzling
 @implementation UIApplication ( MWISwizzling )
 
-- ( void ) swizzling_observeValueForKeyPath: ( NSString* )_KeyPath ofObject: ( id )_Object change: ( NSDictionary <NSString*, id>* )_Change context: ( void* )_Context
+- ( void ) mwi_swizzling_observeValueForKeyPath:
+              ( NSString* )_KeyPath
+    ofObject: ( id )_Object
+      change: ( NSDictionary <NSString*, id>* )_Change
+     context: ( void* )_Context
     {
     if ( _Context == asObserverContext )
-        TriggerMemoryWarning_();
+        mwi_trigger_memory_warning();
 
-    [ self swizzling_observeValueForKeyPath: _KeyPath ofObject: _Object change: _Change context: _Context ];
+    [ self mwi_swizzling_observeValueForKeyPath: _KeyPath ofObject: _Object change: _Change context: _Context ];
     }
 
-- ( void ) swizzling_setDelegate: ( id <UIApplicationDelegate> )_NewDelegate
+- ( void ) mwi_swizzling_setDelegate: ( id <UIApplicationDelegate> )_NewDelegate
     {
     // Debug code that lets us simulate memory warnings by pressing the device's volume buttons.
     // Don't ever ship this code in releasing version, as it will be rejected by Apple.
@@ -101,6 +106,7 @@ static BOOL check_if_object_overrides_selector( id _Object, SEL _Selector )
     NSKeyValueObservingOptions kvoOptions = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionNew;
     NSString* keypath = NSStringFromSelector( @selector( outputVolume ) );
 
+    Class FBKVOControllerClass = nil;
     if ( ( FBKVOControllerClass = objc_lookUpClass( "FBKVOController" ) ) )
         {
         id kvoController = kvoController = objc_msgSend( [ FBKVOControllerClass alloc ], @selector( initWithObserver:retainObserved: ), _NewDelegate, NO );
@@ -112,34 +118,33 @@ static BOOL check_if_object_overrides_selector( id _Object, SEL _Selector )
             , sharedSession
             , keypath
             , kvoOptions
-            , [ ^( id _Observer, id _Observing, NSDictionary <NSString*, id>* _Change ){ TriggerMemoryWarning_(); } copy ]
+            , [ ^( id _Observer, id _Observing, NSDictionary <NSString*, id>* _Change ){ mwi_trigger_memory_warning(); } copy ]
             );
         }
     else
         {
         SEL kvoNativeCallback = @selector( observeValueForKeyPath:ofObject:change:context: );
-        SEL kvoSwizzledCallback = @selector( swizzling_observeValueForKeyPath:ofObject:change:context: );
+        SEL kvoSwizzledCallback = @selector( mwi_swizzling_observeValueForKeyPath:ofObject:change:context: );
+
+        char const* typeEncoding = "v@:{NSString=#}{AVAudioSession=#}{NSDictionary=#}^type";
+        BOOL resultOfClassAddtion = NO;
 
         // If the AppDelegate object of host app overrides `observeValueForKeyPath:ofObject:change:context:`
-        if ( check_if_object_overrides_selector( _NewDelegate, kvoNativeCallback ) )
+        if ( mwi_check_if_object_overrides_selector( _NewDelegate, kvoNativeCallback ) )
             {
-            swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ self class ], kvoSwizzledCallback );
+            mwi_swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ self class ], kvoSwizzledCallback );
 
             IMP imp = class_getMethodImplementation( [ self class ], kvoSwizzledCallback );
-            class_addMethod( [ _NewDelegate class ], kvoSwizzledCallback, imp, "v@:{NSString=#}{NSDictionary=#}^type" );
+            resultOfClassAddtion = class_addMethod( [ _NewDelegate class ], kvoSwizzledCallback, imp, typeEncoding );
             }
         else
-            {
-//            swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ self class ], kvoSwizzledCallback );
+            resultOfClassAddtion = class_addMethod( [ _NewDelegate class ], kvoNativeCallback, ( IMP )mwi_kvo_callback_imp, typeEncoding );
 
-            BOOL result = class_addMethod( [ _NewDelegate class ], kvoNativeCallback, ( IMP )kvo_callback_imp, "v@:@@@^type" );
-            NSAssert( result, @"class_addMethod() fails with result value: %d", result );
-            }
-
+        NSAssert( resultOfClassAddtion, @"class_addMethod() fails" );
         [ sharedSession addObserver: _NewDelegate forKeyPath: keypath options: kvoOptions context: &asObserverContext ];
         }
 
-    return [ self swizzling_setDelegate: _NewDelegate ];
+    return [ self mwi_swizzling_setDelegate: _NewDelegate ];
     }
 
 @end // UIApplication + MWISwizzling
