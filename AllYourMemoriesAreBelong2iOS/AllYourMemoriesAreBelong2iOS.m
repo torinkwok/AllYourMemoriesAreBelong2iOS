@@ -35,8 +35,12 @@ static void mwi_swizzle_stick ( Class _LhsClass, SEL _LhsSelector, Class _RhsCla
 __attribute__( ( constructor ) )
 static void mwi_swizzling_factory ()
     {
-    mwi_swizzle_stick( [ UIApplication class ], @selector( setDelegate: )
-                 , [ UIApplication class ], @selector( mwi_swizzling_setDelegate: ) );
+    mwi_swizzle_stick(
+        [ UIApplication class ]
+        , @selector( setDelegate: )
+        , [ UIApplication class ]
+        , @selector( mwi_swizzling_setDelegate: )
+        );
     }
 
 static void mwi_trigger_memory_warning ()
