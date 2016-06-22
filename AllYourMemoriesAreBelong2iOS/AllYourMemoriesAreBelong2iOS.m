@@ -7,6 +7,9 @@
 //
 
 #if ( DEBUG )
+#   pragma clang diagnostic push
+#   pragma clang diagnostic ignored "-Wundeclared-selector"
+#
 #   import "AllYourMemoriesAreBelong2iOS.h"
 #   import <AVFoundation/AVFoundation.h>
 #   import <objc/runtime.h>
@@ -35,9 +38,6 @@ static void swizzling_stick ()
     swizzle_stick( [ UIApplication class ], @selector( setDelegate: )
                  , [ UIApplication class ], @selector( swizzling_setDelegate: ) );
     }
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
 
 void ( ^TriggerMemoryWarning_ )() = ^{
     dispatch_async( dispatch_get_main_queue(), ( dispatch_block_t )^{
@@ -120,7 +120,12 @@ static BOOL check_if_object_overrides_selector( id _Object, SEL _Selector )
         SEL kvoSwizzledCallback = @selector( swizzling_observeValueForKeyPath:ofObject:change:context: );
 
         if ( check_if_object_overrides_selector( _NewDelegate, kvoNativeCallback ) )
+            {
             swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ self class ], kvoSwizzledCallback );
+
+            IMP imp = class_getMethodImplementation( [ self class ], kvoSwizzledCallback );
+            class_addMethod( [ _NewDelegate class ], kvoSwizzledCallback, imp, "v@:@@^type" );
+            }
         else
             {
             BOOL result = class_addMethod( [ _NewDelegate class ], kvoNativeCallback, ( IMP )kvo_callback_imp, "v@:@@^type" );
@@ -135,8 +140,7 @@ static BOOL check_if_object_overrides_selector( id _Object, SEL _Selector )
     return [ self swizzling_setDelegate: _NewDelegate ];
     }
 
-#pragma clang diagnostic pop
-
 @end // UIApplication + MWISwizzling
 
+#   pragma clang diagnostic pop
 #endif
