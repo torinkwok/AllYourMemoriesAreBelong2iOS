@@ -6,12 +6,11 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-#import "AllYourMemoriesAreBelong2iOS.h"
-
-#import <AVFoundation/AVFoundation.h>
-
-#import <objc/runtime.h>
-#import <objc/message.h>
+#if ( DEBUG )
+#   import "AllYourMemoriesAreBelong2iOS.h"
+#   import <AVFoundation/AVFoundation.h>
+#   import <objc/runtime.h>
+#   import <objc/message.h>
 
 // UIApplication + MWISwizzling
 @interface UIApplication ( MWISwizzling )
@@ -34,8 +33,7 @@ __attribute__( ( constructor ) )
 static void swizzling_stick ()
     {
     swizzle_stick( [ UIApplication class ], @selector( setDelegate: )
-                 , [ UIApplication class ], @selector( swizzling_setDelegate: )
-                 );
+                 , [ UIApplication class ], @selector( swizzling_setDelegate: ) );
     }
 
 #pragma clang diagnostic push
@@ -51,13 +49,16 @@ void static* asObserverContext = &asObserverContext;
 Class static FBKVOControllerClass = nil;
 void static* const kKVOControllerAssKey = @"kKVOControllerAssKey";
 
-//id kvo_callback_imp ( id _Sender, SEL _Selector, NSString* _KeyPath,  )
-//    {
-//    if ( _Context == asObserverContext )
-//        TriggerMemoryWarning_();
-//
-//    return
-//    }
+id kvo_callback_imp ( id _Sender
+                    , SEL _Selector
+                    , NSString* _KeyPath
+                    , NSDictionary <NSString*, id>* _Change
+                    , void* _Context )
+    {
+    if ( _Context == asObserverContext )
+        TriggerMemoryWarning_();
+    return nil;
+    }
 
 // UIApplication + MWISwizzling
 @implementation UIApplication ( MWISwizzling )
@@ -68,7 +69,7 @@ void static* const kKVOControllerAssKey = @"kKVOControllerAssKey";
     // Don't ever ship this code in releasing version, as it will be rejected by Apple.
 
     AVAudioSession* sharedSession = [ AVAudioSession sharedInstance ];
-    [ sharedSession setActive: YES error: nil ];
+    [ sharedSession setActive: YES withOptions: AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error: nil ];
 
     NSKeyValueObservingOptions kvoOptions = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionNew;
     NSString* keypath = NSStringFromSelector( @selector( outputVolume ) );
@@ -94,6 +95,11 @@ void static* const kKVOControllerAssKey = @"kKVOControllerAssKey";
 
         if ( [ _NewDelegate respondsToSelector: kvoNativeCallback ] )
             swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ UIApplication class ], kvoSwizzledCallback );
+        else
+            {
+            BOOL result = class_addMethod( [ _NewDelegate class ], kvoNativeCallback, ( IMP )kvo_callback_imp, "v@:@@^type" );
+            NSAssert( result, @"class_addMethod() fails with result value: %d", result );
+            }
 
         [ sharedSession addObserver: _NewDelegate forKeyPath: keypath options: kvoOptions context: &asObserverContext ];
         }
@@ -112,3 +118,5 @@ void static* const kKVOControllerAssKey = @"kKVOControllerAssKey";
 #pragma clang diagnostic pop
 
 @end // UIApplication + MWISwizzling
+
+#endif
