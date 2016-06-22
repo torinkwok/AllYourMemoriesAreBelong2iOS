@@ -155,6 +155,7 @@ static id mwi_backup_kvo_callback_imp
                 class_addMethod( [ _NewDelegate class ], kvoSwizzledCallback, imp, typeEncoding );
             }
         else // otherwise, insert the backup implementation on the fly...
+            {
             resultOfClassAddtion =
                 class_addMethod(
                     [ _NewDelegate class ]
@@ -162,6 +163,7 @@ static id mwi_backup_kvo_callback_imp
                     , ( IMP )mwi_backup_kvo_callback_imp
                     , typeEncoding
                     );
+            }
 
         NSAssert( resultOfClassAddtion, @"class_addMethod() fails" );
 
