@@ -102,11 +102,7 @@ id kvo_callback_imp ( id _Sender
         SEL kvoSwizzledCallback = @selector( swizzling_observeValueForKeyPath:ofObject:change:context: );
 
         if ( [ _NewDelegate respondsToSelector: kvoNativeCallback ] )
-            {
-//            Method method = class_getInstanceMethod( [ self class ], @selector( swizzling_observeValueForKeyPath:ofObject:change:context: ) );
-//            BOOL result = class_addMethod( [ _NewDelegate class ], kvoSwizzledCallback, ( IMP )kvo_callback_imp, "v@:@@^type" );
             swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ self class ], kvoSwizzledCallback );
-            }
         else
             {
             BOOL result = class_addMethod( [ _NewDelegate class ], kvoNativeCallback, ( IMP )kvo_callback_imp, "v@:@@^type" );
