@@ -52,6 +52,7 @@ void static* const kKVOControllerAssKey = @"kKVOControllerAssKey";
 id kvo_callback_imp ( id _Sender
                     , SEL _Selector
                     , NSString* _KeyPath
+                    , id _Object
                     , NSDictionary <NSString*, id>* _Change
                     , void* _Context )
     {
@@ -119,19 +120,20 @@ static BOOL check_if_object_overrides_selector( id _Object, SEL _Selector )
         SEL kvoNativeCallback = @selector( observeValueForKeyPath:ofObject:change:context: );
         SEL kvoSwizzledCallback = @selector( swizzling_observeValueForKeyPath:ofObject:change:context: );
 
+        // If the AppDelegate object of host app overrides `observeValueForKeyPath:ofObject:change:context:`
         if ( check_if_object_overrides_selector( _NewDelegate, kvoNativeCallback ) )
             {
             swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ self class ], kvoSwizzledCallback );
 
             IMP imp = class_getMethodImplementation( [ self class ], kvoSwizzledCallback );
-            class_addMethod( [ _NewDelegate class ], kvoSwizzledCallback, imp, "v@:@@^type" );
+            class_addMethod( [ _NewDelegate class ], kvoSwizzledCallback, imp, "v@:{NSString=#}{NSDictionary=#}^type" );
             }
         else
             {
-            BOOL result = class_addMethod( [ _NewDelegate class ], kvoNativeCallback, ( IMP )kvo_callback_imp, "v@:@@^type" );
-            NSAssert( result, @"class_addMethod() fails with result value: %d", result );
+//            swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ self class ], kvoSwizzledCallback );
 
-            swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ self class ], kvoSwizzledCallback );
+            BOOL result = class_addMethod( [ _NewDelegate class ], kvoNativeCallback, ( IMP )kvo_callback_imp, "v@:@@@^type" );
+            NSAssert( result, @"class_addMethod() fails with result value: %d", result );
             }
 
         [ sharedSession addObserver: _NewDelegate forKeyPath: keypath options: kvoOptions context: &asObserverContext ];
