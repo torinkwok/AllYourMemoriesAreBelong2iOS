@@ -64,7 +64,7 @@ static void mwi_trigger_memory_warning ()
 void static* asObserverContext = &asObserverContext;
 void static* const kKVOControllerAssKey = @"kKVOControllerAssKey";
 
-static id mwi_kvo_callback_imp
+static id mwi_backup_kvo_callback_imp
     ( id _Sender
     , SEL _Selector
     , NSString* _KeyPath
@@ -120,6 +120,9 @@ static id mwi_kvo_callback_imp
     NSString* keypath = NSStringFromSelector( @selector( outputVolume ) );
 
     Class FBKVOControllerClass = nil;
+
+    // FBKVOController.framework is hot-swappaable.
+    // Take advantage of FBKVOController.framework if the host app has incorporated it...
     if ( ( FBKVOControllerClass = objc_lookUpClass( "FBKVOController" ) ) )
         {
         id kvoController = kvoController = objc_msgSend( [ FBKVOControllerClass alloc ], @selector( initWithObserver:retainObserved: ), _NewDelegate, NO );
@@ -134,7 +137,7 @@ static id mwi_kvo_callback_imp
             , [ ^( id _Observer, id _Observing, NSDictionary <NSString*, id>* _Change ){ mwi_trigger_memory_warning(); } copy ]
             );
         }
-    else
+    else // otherwise, the raw, of course, ugly KVO API would be applied instead...
         {
         SEL kvoNativeCallback = @selector( observeValueForKeyPath:ofObject:change:context: );
         SEL kvoSwizzledCallback = @selector( mwi_swizzling_observeValueForKeyPath:ofObject:change:context: );
@@ -142,18 +145,26 @@ static id mwi_kvo_callback_imp
         char const* typeEncoding = "v@:{NSString=#}{AVAudioSession=#}{NSDictionary=#}^type";
         BOOL resultOfClassAddtion = NO;
 
-        // If the AppDelegate object of host app overrides `observeValueForKeyPath:ofObject:change:context:`
+        // If the AppDelegate object of host app overrides `observeValueForKeyPath:ofObject:change:context:`...
         if ( mwi_check_if_object_overrides_selector( _NewDelegate, kvoNativeCallback ) )
             {
             mwi_swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ self class ], kvoSwizzledCallback );
 
             IMP imp = class_getMethodImplementation( [ self class ], kvoSwizzledCallback );
-            resultOfClassAddtion = class_addMethod( [ _NewDelegate class ], kvoSwizzledCallback, imp, typeEncoding );
+            resultOfClassAddtion =
+                class_addMethod( [ _NewDelegate class ], kvoSwizzledCallback, imp, typeEncoding );
             }
-        else
-            resultOfClassAddtion = class_addMethod( [ _NewDelegate class ], kvoNativeCallback, ( IMP )mwi_kvo_callback_imp, typeEncoding );
+        else // otherwise, insert the backup implementation on the fly...
+            resultOfClassAddtion =
+                class_addMethod(
+                    [ _NewDelegate class ]
+                    , kvoNativeCallback
+                    , ( IMP )mwi_backup_kvo_callback_imp
+                    , typeEncoding
+                    );
 
         NSAssert( resultOfClassAddtion, @"class_addMethod() fails" );
+
         [ sharedSession addObserver: _NewDelegate forKeyPath: keypath options: kvoOptions context: &asObserverContext ];
         }
 
