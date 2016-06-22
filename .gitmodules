@@ -1,0 +1,3 @@
+[submodule "Example1-iOS/deps/FBKVOController"]
+	path = Example1-iOS/deps/FBKVOController
+	url = https://github.com/facebook/KVOController.git

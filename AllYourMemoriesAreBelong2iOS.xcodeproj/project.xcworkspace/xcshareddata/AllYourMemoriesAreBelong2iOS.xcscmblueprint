@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "62732391A4712DDA1BCA624C6196384653A98643",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "62732391A4712DDA1BCA624C6196384653A98643" : 0,
+    "F17C12D860420E85866F57474FF628886C65A3EA" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FB3FF42A-9BE8-4B75-B7F6-673BBBF92705",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "62732391A4712DDA1BCA624C6196384653A98643" : "AllYourMemoriesAreBelong2iOS\/",
+    "F17C12D860420E85866F57474FF628886C65A3EA" : "AllYourMemoriesAreBelong2iOS\/Example1-iOS\/deps\/FBKVOController\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AllYourMemoriesAreBelong2iOS",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AllYourMemoriesAreBelong2iOS.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TongKuo\/AllYourMemoriesAreBelong2iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "62732391A4712DDA1BCA624C6196384653A98643"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/facebook\/KVOController.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F17C12D860420E85866F57474FF628886C65A3EA"
+    }
+  ]
+}
