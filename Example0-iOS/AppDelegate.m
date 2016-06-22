@@ -16,14 +16,14 @@
 
 @implementation AppDelegate
 
-- ( void ) observeValueForKeyPath: ( NSString* )_KeyPath ofObject: ( id )_Object change: ( NSDictionary <NSString*, id>* )_Change context: ( void* )_Context
-    {
-    NSLog( @"matrix" );
-    }
+//- ( void ) observeValueForKeyPath: ( NSString* )_KeyPath ofObject: ( id )_Object change: ( NSDictionary <NSString*, id>* )_Change context: ( void* )_Context
+//    {
+//    NSLog( @"matrix" );
+//    }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSLog( @"responds 0: %d", [ super respondsToSelector: @selector( swizzling_observeValueForKeyPath:ofObject:change:context: ) ] );
+    NSLog( @"responds 0: %d", [ [ NSObject class ] respondsToSelector: @selector( observeValueForKeyPath:ofObject:change:context: ) ] );
     return YES;
 }
 

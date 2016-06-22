@@ -60,6 +60,24 @@ id kvo_callback_imp ( id _Sender
     return nil;
     }
 
+static BOOL check_if_object_overrides_selector( id _Object, SEL _Selector )
+    {
+    Class objSuperClass = [ _Object superclass ];;
+    BOOL isMethodOverridden = NO;
+
+    while ( objSuperClass )
+        {
+        if ( ( isMethodOverridden =
+            ( [ _Object methodForSelector: _Selector ]
+                != [ objSuperClass instanceMethodForSelector: _Selector ] ) ) )
+            break;
+
+        objSuperClass = [ objSuperClass superclass ];
+        }
+
+    return isMethodOverridden;
+    }
+
 // UIApplication + MWISwizzling
 @implementation UIApplication ( MWISwizzling )
 
@@ -101,7 +119,7 @@ id kvo_callback_imp ( id _Sender
         SEL kvoNativeCallback = @selector( observeValueForKeyPath:ofObject:change:context: );
         SEL kvoSwizzledCallback = @selector( swizzling_observeValueForKeyPath:ofObject:change:context: );
 
-        if ( [ _NewDelegate respondsToSelector: kvoNativeCallback ] )
+        if ( check_if_object_overrides_selector( _NewDelegate, kvoNativeCallback ) )
             swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ self class ], kvoSwizzledCallback );
         else
             {
