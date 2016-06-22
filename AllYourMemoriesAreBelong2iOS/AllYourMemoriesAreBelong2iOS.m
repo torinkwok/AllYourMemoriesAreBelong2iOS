@@ -63,6 +63,14 @@ id kvo_callback_imp ( id _Sender
 // UIApplication + MWISwizzling
 @implementation UIApplication ( MWISwizzling )
 
+- ( void ) swizzling_observeValueForKeyPath: ( NSString* )_KeyPath ofObject: ( id )_Object change: ( NSDictionary <NSString*, id>* )_Change context: ( void* )_Context
+    {
+    if ( _Context == asObserverContext )
+        TriggerMemoryWarning_();
+
+    [ self swizzling_observeValueForKeyPath: _KeyPath ofObject: _Object change: _Change context: _Context ];
+    }
+
 - ( void ) swizzling_setDelegate: ( id <UIApplicationDelegate> )_NewDelegate
     {
     // Debug code that lets us simulate memory warnings by pressing the device's volume buttons.
@@ -94,25 +102,23 @@ id kvo_callback_imp ( id _Sender
         SEL kvoSwizzledCallback = @selector( swizzling_observeValueForKeyPath:ofObject:change:context: );
 
         if ( [ _NewDelegate respondsToSelector: kvoNativeCallback ] )
-            swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ UIApplication class ], kvoSwizzledCallback );
+            {
+//            Method method = class_getInstanceMethod( [ self class ], @selector( swizzling_observeValueForKeyPath:ofObject:change:context: ) );
+//            BOOL result = class_addMethod( [ _NewDelegate class ], kvoSwizzledCallback, ( IMP )kvo_callback_imp, "v@:@@^type" );
+            swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ self class ], kvoSwizzledCallback );
+            }
         else
             {
             BOOL result = class_addMethod( [ _NewDelegate class ], kvoNativeCallback, ( IMP )kvo_callback_imp, "v@:@@^type" );
             NSAssert( result, @"class_addMethod() fails with result value: %d", result );
+
+            swizzle_stick( [ _NewDelegate class ], kvoNativeCallback, [ self class ], kvoSwizzledCallback );
             }
 
         [ sharedSession addObserver: _NewDelegate forKeyPath: keypath options: kvoOptions context: &asObserverContext ];
         }
 
     return [ self swizzling_setDelegate: _NewDelegate ];
-    }
-
-- ( void ) swizzling_observeValueForKeyPath: ( NSString* )_KeyPath ofObject: ( id )_Object change: ( NSDictionary <NSString*, id>* )_Change context: ( void* )_Context
-    {
-    if ( _Context == asObserverContext )
-        TriggerMemoryWarning_();
-
-    [ self swizzling_observeValueForKeyPath: _KeyPath ofObject: _Object change: _Change context: _Context ];
     }
 
 #pragma clang diagnostic pop
