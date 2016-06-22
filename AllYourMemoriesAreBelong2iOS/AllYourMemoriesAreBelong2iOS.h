@@ -15,10 +15,3 @@ FOUNDATION_EXPORT double AllYourMemoriesAreBelong2iOSVersionNumber;
 FOUNDATION_EXPORT const unsigned char AllYourMemoriesAreBelong2iOSVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <AllYourMemoriesAreBelong2iOS/PublicHeader.h>
-
-// UIApplication + MWISwizzling
-@interface UIApplication ( MWISwizzling )
-
-- ( instancetype ) swizzling_init_;
-
-@end // UIApplication + MWISwizzling

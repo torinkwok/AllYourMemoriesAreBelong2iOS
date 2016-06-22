@@ -12,12 +12,17 @@
 #import <objc/message.h>
 
 // UIApplication + MWISwizzling
+@interface UIApplication ( MWISwizzling )
+- ( instancetype ) swizzling_init_;
+@end // UIApplication + MWISwizzling
+
+// UIApplication + MWISwizzling
 @implementation UIApplication ( MWISwizzling )
 
 - ( instancetype ) swizzling_init_
     {
-    NSLog( @"🍊" );
-    return [ self init ];
+    NSLog( @"\U0001F383" );
+    return [ self swizzling_init_ ];
     }
 
 @end // UIApplication + MWISwizzling
@@ -33,6 +38,4 @@ void test ( void )
 
     method_setImplementation( oldMethod, newImp );
     method_setImplementation( newMethod, oldImp );
-
-    method_exchangeImplementations( oldMethod, newMethod );
     }
