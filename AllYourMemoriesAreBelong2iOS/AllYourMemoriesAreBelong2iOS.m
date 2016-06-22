@@ -14,11 +14,22 @@
 #   import <AVFoundation/AVFoundation.h>
 #   import <objc/runtime.h>
 #   import <objc/message.h>
-
+#
 // UIApplication + MWISwizzling
 @interface UIApplication ( MWISwizzling )
 - ( void ) mwi_swizzling_setDelegate: ( id <UIApplicationDelegate> )_New;
 @end // UIApplication + MWISwizzling
+
+static BOOL mwi_check_if_object_overrides_selector( id _Object, SEL _Selector )
+    {
+    Class objSuperClass = [ _Object superclass ];
+
+    BOOL isMethodOverridden =
+        [ _Object methodForSelector: _Selector ]
+            != [ objSuperClass instanceMethodForSelector: _Selector ];
+
+    return isMethodOverridden;
+    }
 
 static void mwi_swizzle_stick ( Class _LhsClass, SEL _LhsSelector, Class _RhsClass, SEL _RhsSelector )
     {
@@ -61,27 +72,25 @@ static id mwi_kvo_callback_imp
     , NSDictionary <NSString*, id>* _Change
     , void* _Context )
     {
-    struct objc_super dad;
-    dad.receiver = _Sender;
-    dad.super_class = class_getSuperclass( object_getClass( _Sender ) );
+    // struct objc_super dad;
+    // dad.receiver = _Sender;
+    // dad.super_class = class_getSuperclass( object_getClass( _Sender ) );
+    //
+    // ( ( void (*)( id, SEL, NSString*, id, NSDictionary <NSString*, id>*, void* ) )objc_msgSendSuper )
+    //     ( ( __bridge id )( &dad ), _Selector, _KeyPath, _Object, _Change, _Context );
 
-    ( ( void (*)( id, SEL, NSString*, id, NSDictionary <NSString*, id>*, void* ) )objc_msgSendSuper )
-        ( ( __bridge id )( &dad ), _Selector, _KeyPath, _Object, _Change, _Context );
+    /* FIXME: The commented code fragment above causes an uncaught exception:
+
+      "Terminating app due to uncaught exception 'NSInternalInconsistencyException', 
+       reason: '<AppDelegate: 0x13fe16ea0>: An -observeValueForKeyPath:ofObject:change:context: message was received 
+       but not handled. Key path: outputVolume".
+
+       Refer to the discussions here: http://stackoverflow.com/questions/12270429/message-was-received-but-not-handled-kvo
+     */
 
     if ( _Context == asObserverContext )
         mwi_trigger_memory_warning();
     return nil;
-    }
-
-static BOOL mwi_check_if_object_overrides_selector( id _Object, SEL _Selector )
-    {
-    Class objSuperClass = [ _Object superclass ];
-
-    BOOL isMethodOverridden =
-        [ _Object methodForSelector: _Selector ]
-            != [ objSuperClass instanceMethodForSelector: _Selector ];
-
-    return isMethodOverridden;
     }
 
 // UIApplication + MWISwizzling
@@ -152,6 +161,6 @@ static BOOL mwi_check_if_object_overrides_selector( id _Object, SEL _Selector )
     }
 
 @end // UIApplication + MWISwizzling
-
+#
 #   pragma clang diagnostic pop
 #endif
