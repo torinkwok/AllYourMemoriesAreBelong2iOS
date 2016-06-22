@@ -16,10 +16,10 @@
 
 @implementation AppDelegate
 
-- ( void ) observeValueForKeyPath: ( NSString* )_KeyPath ofObject: ( id )_Object change: ( NSDictionary <NSString*, id>* )_Change context: ( void* )_Context
-    {
-    NSLog( @"matrix (invoking from internation of %@", self );
-    }
+//- ( void ) observeValueForKeyPath: ( NSString* )_KeyPath ofObject: ( id )_Object change: ( NSDictionary <NSString*, id>* )_Change context: ( void* )_Context
+//    {
+//    NSLog( @"matrix (invoking from internation of %@", self );
+//    }
 
 - ( void ) applicationDidReceiveMemoryWarning:(UIApplication *)application
     {
@@ -29,7 +29,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     NSLog( @"responds 0: %d", [ [ NSObject class ] respondsToSelector: @selector( observeValueForKeyPath:ofObject:change:context: ) ] );
-    return YES;
+    return [ super application: application didFinishLaunchingWithOptions: launchOptions ];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

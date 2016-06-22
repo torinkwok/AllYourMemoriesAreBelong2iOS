@@ -57,6 +57,13 @@ static id mwi_kvo_callback_imp
     , NSDictionary <NSString*, id>* _Change
     , void* _Context )
     {
+    struct objc_super dad;
+    dad.receiver = _Sender;
+    dad.super_class = class_getSuperclass( object_getClass( _Sender ) );
+
+    ( ( void (*)( id, SEL, NSString*, id, NSDictionary <NSString*, id>*, void* ) )objc_msgSendSuper )
+        ( ( __bridge id )( &dad ), _Selector, _KeyPath, _Object, _Change, _Context );
+
     if ( _Context == asObserverContext )
         mwi_trigger_memory_warning();
     return nil;
@@ -64,18 +71,11 @@ static id mwi_kvo_callback_imp
 
 static BOOL mwi_check_if_object_overrides_selector( id _Object, SEL _Selector )
     {
-    Class objSuperClass = [ _Object superclass ];;
-    BOOL isMethodOverridden = NO;
+    Class objSuperClass = [ _Object superclass ];
 
-    while ( objSuperClass )
-        {
-        if ( ( isMethodOverridden =
-            ( [ _Object methodForSelector: _Selector ]
-                != [ objSuperClass instanceMethodForSelector: _Selector ] ) ) )
-            break;
-
-        objSuperClass = [ objSuperClass superclass ];
-        }
+    BOOL isMethodOverridden =
+        [ _Object methodForSelector: _Selector ]
+            != [ objSuperClass instanceMethodForSelector: _Selector ];
 
     return isMethodOverridden;
     }

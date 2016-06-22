@@ -6,12 +6,9 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "AbstractAppDelegate.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface AppDelegate : AbstractAppDelegate
 
 @end
 
