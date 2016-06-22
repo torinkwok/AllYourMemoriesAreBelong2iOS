@@ -44,6 +44,14 @@ void static* asObserverContext = &asObserverContext;
 Class static FBKVOControllerClass = nil;
 void static* const kKVOControllerAssKey = @"kKVOControllerAssKey";
 
+//id kvo_callback_imp ( id _Sender, SEL _Selector, NSString* _KeyPath,  )
+//    {
+//    if ( _Context == asObserverContext )
+//        TriggerMemoryWarning_();
+//
+//    return
+//    }
+
 // UIApplication + MWISwizzling
 @implementation UIApplication ( MWISwizzling )
 
