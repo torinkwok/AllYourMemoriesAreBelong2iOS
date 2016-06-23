@@ -166,7 +166,6 @@ static id mwi_backup_kvo_callback_imp
             }
 
         NSAssert( resultOfClassAddtion, @"class_addMethod() fails" );
-
         [ sharedSession addObserver: _NewDelegate forKeyPath: keypath options: kvoOptions context: &asObserverContext ];
         }
 
