@@ -14,7 +14,7 @@ Okay, this tool simulates iOS on-device memory warnings like a hero.
 
 * It works *transparently*. In other words, to use *AllYourMemoriesAreBelong2iOS*, you need just linking this framework into your app and hit the `Run` button to build and then run the **Debug** scheme. You will never be asked to configure anything and the debug codes in this framework will never be shipped in releasing version
 
-* It supports hot-swapability for [KVOController](https://github.com/facebook/KVOController) from Facebook. In other words, if your app has linked `KVOController.framework`, the internal mechanism of *AllYourMemoriesAreBelong2iOS* would take advantage of it, otherwise the raw KVO API would be applied instead
+* It supports hot-swapability for [KVOController](https://github.com/facebook/KVOController) from Facebook. In other words, if your app has linked *KVOController.framework*, the internal mechanism of *AllYourMemoriesAreBelong2iOS* would take advantage of it, otherwise the raw KVO API would be applied instead
 
 ### How to use
 
