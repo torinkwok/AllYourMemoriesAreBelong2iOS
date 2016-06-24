@@ -20,7 +20,7 @@ Okay, this tool simulates iOS on-device memory warnings like a hero.
 
 1. Clone and incorporate this repo into your project with `git submodule`:
 	
-`git submodule add https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS.git ${YOUR_DIR} --recursive`
+	`git submodule add https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS.git ${YOUR_DIR} --recursive`
 
 2. Hit `File` -> `Add Files to "${YOUR_PROJECT_NAME}"` item in Xcode menu bar, then choose the `AllYourMemoriesAreBelong2iOS.xcodeproj`
 
