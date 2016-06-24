@@ -29,3 +29,12 @@ Okay, this tool simulates iOS on-device memory warnings like a hero.
 4. Make sure build and run your project in **Debug** scheme. *AllYourMemoriesAreBelong2iOS* includes the invocation of Apple private API, its implementation was masked in releasing version as it will be rejected by Apple
 
 5. Press physical volume button on your iOS devices to induce the system memory warnings. You will want to process those notifications in [`didReceiveMemoryWarning`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621409-didreceivememorywarning?language=objc) or [`applicationDidReceiveMemoryWarning:`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/#//apple_ref/occ/intfm/UIApplicationDelegate/applicationDidReceiveMemoryWarning:) method in the **ViewControllers** or **AppDelegate**
+
+### Author
+
+Torin Kwok.
+
+### Contact me
+
+* Email: `dG9yaW5Aa3dvay5pbQ==` (base64ed)
+* GitHub: [@TorinKwok](https://github.com/TorinKwok)
