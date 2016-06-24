@@ -10,8 +10,8 @@ Okay, this tool simulates iOS on-device memory warnings like a hero.
 
 ### Features
 
-* It induces memory warnings using **volume button** press of iOS devices
+* It induces memory warnings using the physical **volume buttons** press on iOS devices
 
 * It works *transparently*. In other words, to use AllYourMemoriesAreBelong2iOS, you need just linking this framework into your app and hit the `Run` button to build and then run the **Debug** scheme. You will never be asked to configure anything and the debug codes in this framework will never be shipped in releasing version
 
-* It supports hot-swapability of FBKVOController
+* It supports hot-swapability of [FBKVOController](https://github.com/facebook/KVOController)
