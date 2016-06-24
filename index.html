@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>All Your Memories Are Belong to iOS by TorinKwok</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>All Your Memories Are Belong to iOS</h1>
+        <h2>Simulate iOS on-device memory warnings like a hero.</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h3>
+<a id="whats-this" class="anchor" href="#whats-this" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What's this</h3>
+
+<p>A frequently asked question on StackOverflow.net:</p>
+
+<blockquote>
+<p>I'd like to test my app functions well in low memory conditions, but it's difficult to test. How can I induce low memory warnings that trigger the <a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621409-didreceivememorywarning?language=objc"><code>didReceiveMemoryWarning</code></a> or <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/#//apple_ref/occ/intfm/UIApplicationDelegate/applicationDidReceiveMemoryWarning:"><code>applicationDidReceiveMemoryWarning:</code></a> method in my <strong>ViewControllers</strong> or <strong>AppDelegate</strong> when the app is running on the real device, NOT the simulator? Or what are some ways I can test my app under these possible conditions?</p>
+
+<p>The reason I can't use the simulator is my app uses Game Center and invites don't work on the simulator.</p>
+</blockquote>
+
+<p>Okay, this tool simulates iOS on-device memory warnings like a hero.</p>
+
+<h3>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h3>
+
+<ul>
+<li><p>It induces memory warnings through pressing the physical <strong>volume button</strong> on iOS devices</p></li>
+<li><p>It works <em>transparently</em>. In other words, to use <em>AllYourMemoriesAreBelong2iOS</em>, you need just linking this framework into your app and hit the <code>Run</code> button to build and then run the <strong>Debug</strong> scheme. You will never be asked to configure anything and the debug codes in this framework will never be shipped in releasing version</p></li>
+<li><p>It supports hot-swapability for <a href="https://github.com/facebook/KVOController">KVOController</a> from Facebook. In other words, if your app has linked <code>KVOController.framework</code>, the internal mechanism of <em>AllYourMemoriesAreBelong2iOS</em> would take advantage of it, otherwise the raw KVO API would be applied instead</p></li>
+</ul>
+
+<h3>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use</h3>
+
+<ol>
+<li>
+<p>Clone and incorporate this repo into your project with <code>git submodule</code>:</p>
+
+<p><code>git submodule add https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS.git ${YOUR_DIR} --recursive</code></p>
+</li>
+<li><p>Hit <code>File</code> -&gt; <code>Add Files to "${YOUR_PROJECT_NAME}"</code> item in Xcode menu bar, then choose the <code>AllYourMemoriesAreBelong2iOS.xcodeproj</code></p></li>
+<li><p>Link <em>AllYourMemoriesAreBelong2iOS</em> in <code>General</code> panel</p></li>
+<li><p>Make sure build and run your project in <strong>Debug</strong> scheme. <em>AllYourMemoriesAreBelong2iOS</em> includes the invocation of Apple private API, its implementation was masked in releasing version as it will be rejected by Apple</p></li>
+<li><p>Press physical volume button on your iOS devices to induce the system memory warnings. You will want to process those notifications in <a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621409-didreceivememorywarning?language=objc"><code>didReceiveMemoryWarning</code></a> or <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/#//apple_ref/occ/intfm/UIApplicationDelegate/applicationDidReceiveMemoryWarning:"><code>applicationDidReceiveMemoryWarning:</code></a> method in the <strong>ViewControllers</strong> or <strong>AppDelegate</strong></p></li>
+</ol>
+
+<h3>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Author</h3>
+
+<p>Torin Kwok.</p>
+
+<h3>
+<a id="contact-me" class="anchor" href="#contact-me" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contact me</h3>
+
+<ul>
+<li>Email: <code>dG9yaW5Aa3dvay5pbQ==</code> (base64ed)</li>
+<li>OpenPGP/GnuGPG: <a href="https://keybase.io/kwok">fetch pub key</a>
+</li>
+<li>GitHub: <a href="https://github.com/TorinKwok">@TorinKwok</a>
+</li>
+</ul>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
