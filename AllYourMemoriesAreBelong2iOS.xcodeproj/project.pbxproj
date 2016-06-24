@@ -835,6 +835,7 @@
 				833C6ECA1D1A40470034A022 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83C592911D1A31C700942D20 /* Build configuration list for PBXProject "AllYourMemoriesAreBelong2iOS" */ = {
 			isa = XCConfigurationList;
