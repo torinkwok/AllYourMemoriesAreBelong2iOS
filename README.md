@@ -6,6 +6,4 @@ Question:
 
 > The reason I can't use the simulator is my app uses Game Center and invites don't work on the simulator.
 
-Answer:
-
-> This tool simulates iOS on-device memory warnings like a hero.
+Okay, this tool simulates iOS on-device memory warnings like a hero.
