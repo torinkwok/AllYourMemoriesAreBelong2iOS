@@ -37,7 +37,7 @@ Torin Kwok.
 ### Contact me
 
 * Email: `dG9yaW5Aa3dvay5pbQ==` (base64ed)
-* OpenPGP/GnuGPG: [fetch pub key](https://keybase.io/kwok)
+* OpenPGP/GnuPG: [fetch pub key](https://keybase.io/kwok)
 * GitHub: [@TorinKwok](https://github.com/TorinKwok)
 
 ### License
