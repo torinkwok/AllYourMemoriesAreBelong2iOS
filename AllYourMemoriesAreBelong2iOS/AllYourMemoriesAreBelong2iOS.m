@@ -1,6 +1,5 @@
 //
-//  MemoryWarningInducer.m
-//  MemoryWarningInducer
+//  AllYourMemoriesAreBelong2iOS.m
 //
 //  Created by Torin Kwok. on 6/21/16.
 //  Copyright © 2016 Torin Kwok. All rights reserved.
