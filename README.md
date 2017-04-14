@@ -8,6 +8,10 @@ A frequently asked question on StackOverflow.net:
 
 Okay, this tool simulates iOS on-device memory warnings like a hero.
 
+![pod-validablity-badge](https://cocoapod-badges.herokuapp.com/v/AllYourMemoriesAreBelong2iOS/badge.png)
+![version-badge](https://cocoapod-badges.herokuapp.com/p/AllYourMemoriesAreBelong2iOS/badge.png)
+![license-badge](https://cocoapod-badges.herokuapp.com/l/AllYourMemoriesAreBelong2iOS/badge.svg)
+
 ### Features
 
 * It induces memory warnings through pressing the physical **volume button** on iOS devices
