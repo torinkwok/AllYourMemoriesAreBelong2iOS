@@ -60,8 +60,8 @@ static void mwi_trigger_memory_warning () {
 void static* asObserverContext = &asObserverContext;
 void static* const kKVOControllerAssKey = @"kKVOControllerAssKey";
 
-static id mwi_backup_kvo_callback_imp
-  ( id _Sender
+static id mwi_backup_kvo_callback_imp (
+    id _Sender
   , SEL _Selector
   , NSString* _KeyPath
   , id _Object
@@ -96,6 +96,7 @@ static id mwi_backup_kvo_callback_imp
     ofObject: ( id )_Object
       change: ( NSDictionary <NSString*, id>* )_Change
      context: ( void* )_Context {
+
   if ( _Context == asObserverContext )
     mwi_trigger_memory_warning();
 
@@ -103,6 +104,7 @@ static id mwi_backup_kvo_callback_imp
   }
 
 - ( void ) mwi_swizzling_setDelegate: ( id <UIApplicationDelegate> )_NewDelegate {
+
   // Debug code that lets us simulate memory warnings by pressing the device's volume buttons.
   // Don't ever ship this code in releasing version, as it will be rejected by Apple.
 
