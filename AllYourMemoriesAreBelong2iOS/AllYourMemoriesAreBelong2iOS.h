@@ -1,6 +1,5 @@
 //
 //  AllYourMemoriesAreBelong2iOS.h
-//  AllYourMemoriesAreBelong2iOS
 //
 //  Created by Torin Kwok. on 6/22/16.
 //  Copyright © 2016 Torin Kwok. All rights reserved.
