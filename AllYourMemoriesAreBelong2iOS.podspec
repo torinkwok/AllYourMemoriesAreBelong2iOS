@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = "AllYourMemoriesAreBelong2iOS"
-  s.version       = "1.0"
+  s.version       = "1.0.0"
   s.summary       = "Simulate iOS on-device memory warnings like a hero."
 
   s.homepage      = "https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS"
@@ -14,9 +14,5 @@ Pod::Spec.new do |s|
   s.source_files  = 'AllYourMemoriesAreBelong2iOS/*.{h,m}'
   
   s.module_name = 'AllYourMemoriesAreBelong2iOS'
-  s.ios.deployment_target     = '8.0'
-  
-  s.requires_arc  = true
-  s.library       = 'z'
-  s.preserve_path = 'zlib/*'
+  s.ios.deployment_target     = '7.0'
 end
