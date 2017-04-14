@@ -2,8 +2,8 @@
 //  MemoryWarningInducer.m
 //  MemoryWarningInducer
 //
-//  Created by Tong G. on 6/21/16.
-//  Copyright © 2016 Tong Kuo. All rights reserved.
+//  Created by Torin Kwok. on 6/21/16.
+//  Copyright © 2016 Torin Kwok. All rights reserved.
 //
 
 #if ( DEBUG )
