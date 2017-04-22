@@ -1,3 +1,7 @@
+### Broken English?
+
+[Yep](https://en.wikipedia.org/wiki/All_your_base_are_belong_to_us).
+
 ### What's this
 
 A frequently asked question on StackOverflow.net:
