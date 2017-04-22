@@ -10,7 +10,7 @@ A kind of questions frequently asked on StackOverflow:
 
 > The reason I can't use the simulator is my app uses Game Center and invites don't work on the simulator.
 
-Well, *AllYourMemoriesAreBelong2iOS* is an elegant solution. With using it, it became incredibly easy to simulate iOS on-device memory warnings.
+*AllYourMemoriesAreBelong2iOS* is an elegant solution to those problems. With using it, it became incredibly easy to simulate iOS on-device memory warnings.
 
 ![pod-validablity-badge](https://cocoapod-badges.herokuapp.com/v/AllYourMemoriesAreBelong2iOS/badge.png)
 ![version-badge](https://cocoapod-badges.herokuapp.com/p/AllYourMemoriesAreBelong2iOS/badge.png)
@@ -30,15 +30,16 @@ Well, *AllYourMemoriesAreBelong2iOS* is an elegant solution. With using it, it b
 
 To install using [*CocoaPods*](https://github.com/cocoapods/cocoapods), add the following to your project Podfile:
 
-```
+``` ruby
 pod 'AllYourMemoriesAreBelong2iOS', '~>1.0.2'
 ```
 
 #### Git Submodule
 
 1. Clone and incorporate this repo into your project with `git submodule` command:
-	
-	`git submodule add https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS.git ${YOUR_DIR} --recursive`
+```
+git submodule add https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS.git ${YOUR_DIR} --recursive`
+```
 
 2. Click `File` -> `Add Files to "${YOUR_PROJECT_NAME}"` item in Xcode menu bar. Choose the `AllYourMemoriesAreBelong2iOS.xcodeproj`
 
