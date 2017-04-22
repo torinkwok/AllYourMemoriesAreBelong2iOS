@@ -10,7 +10,7 @@ A kind of questions frequently asked on StackOverflow:
 
 > The reason I can't use the simulator is my app uses Game Center and invites don't work on the simulator.
 
-Well, *AllYourMemoriesAreBelong2iOS* is an elegant solution. With it, it became incredibly easy to simulate iOS on-device memory warnings.
+Well, *AllYourMemoriesAreBelong2iOS* is an elegant solution. With using it, it became incredibly easy to simulate iOS on-device memory warnings.
 
 ![pod-validablity-badge](https://cocoapod-badges.herokuapp.com/v/AllYourMemoriesAreBelong2iOS/badge.png)
 ![version-badge](https://cocoapod-badges.herokuapp.com/p/AllYourMemoriesAreBelong2iOS/badge.png)
