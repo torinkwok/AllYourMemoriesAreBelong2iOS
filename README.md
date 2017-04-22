@@ -46,7 +46,7 @@ pod 'AllYourMemoriesAreBelong2iOS', '~>1.0.2'
 
 ### Usage
 
-1. Make sure that your project is being built with the **Debug** scheme. Keep in mind that *AllYourMemoriesAreBelong2iOS* is impossible without invocations to Apple private APIs, hence its all internal implementation was masked in releasing version since, if not so, there's a distinct possibility that your app would be rejected by iTunes Connect reviewers
+1. Make sure that your project is being built with the **Debug** scheme. Keep in mind that *AllYourMemoriesAreBelong2iOS* is impossible without invocations to Apple private APIs, hence its all internal implementation was masked in releasing version, since, if not so, there's a distinct possibility that your app would be rejected by iTunes Connect reviewers
 
 2. Press physical volume buttons on your iOS devices to induce the system memory warnings. You will want to process those notifications in [`didReceiveMemoryWarning`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621409-didreceivememorywarning?language=objc) or [`applicationDidReceiveMemoryWarning:`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/#//apple_ref/occ/intfm/UIApplicationDelegate/applicationDidReceiveMemoryWarning:) method in the **ViewControllers** or **AppDelegate**
 
