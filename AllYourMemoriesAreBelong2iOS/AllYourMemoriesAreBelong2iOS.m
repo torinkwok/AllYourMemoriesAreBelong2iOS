@@ -118,7 +118,12 @@ static id mwi_backup_kvo_callback_imp (
   // FBKVOController.framework is hot-swappaable.
   // Take advantage of FBKVOController.framework if the host app has incorporated it...
   if ( ( FBKVOControllerClass = objc_lookUpClass( "FBKVOController" ) ) ) {
-    id kvoController = kvoController = objc_msgSend( [ FBKVOControllerClass alloc ], @selector( initWithObserver:retainObserved: ), _NewDelegate, NO );
+    id kvoController =
+        ( __bridge id )( ( ( void* (*)(id, SEL, id, BOOL) )objc_msgSend )( [ FBKVOControllerClass alloc ]
+      , @selector( initWithObserver:retainObserved: )
+      , _NewDelegate, NO )
+      );
+
     objc_setAssociatedObject( _NewDelegate, kKVOControllerAssKey, kvoController, OBJC_ASSOCIATION_RETAIN );
 
     ( ( void (*)( id, SEL, id, NSString*, NSKeyValueObservingOptions, void ( ^FBKVONotificationBlock )( id _Nullable, id, NSDictionary <NSString*, id>* ) ) )objc_msgSend )

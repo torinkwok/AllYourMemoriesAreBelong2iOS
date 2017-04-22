@@ -19,8 +19,6 @@
 		833C6F1F1D1AB71C0034A022 /* KVOController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833C6F181D1AB6F00034A022 /* KVOController.framework */; };
 		833C6F201D1AB71C0034A022 /* KVOController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 833C6F181D1AB6F00034A022 /* KVOController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		83C5929B1D1A31C700942D20 /* AllYourMemoriesAreBelong2iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C5929A1D1A31C700942D20 /* AllYourMemoriesAreBelong2iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		83C592A21D1A31C700942D20 /* AllYourMemoriesAreBelong2iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C592971D1A31C700942D20 /* AllYourMemoriesAreBelong2iOS.framework */; };
-		83C592A71D1A31C700942D20 /* AllYourMemoriesAreBelong2iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C592A61D1A31C700942D20 /* AllYourMemoriesAreBelong2iOSTests.m */; };
 		83C592B41D1A31D400942D20 /* AllYourMemoriesAreBelong2iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C592B21D1A31D400942D20 /* AllYourMemoriesAreBelong2iOS.m */; };
 		83C592BD1D1A324100942D20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C592BC1D1A324100942D20 /* main.m */; };
 		83C592C01D1A324100942D20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C592BF1D1A324100942D20 /* AppDelegate.m */; };
@@ -89,13 +87,6 @@
 			remoteGlobalIDString = 81EC40C51CA3620A00BD9226;
 			remoteInfo = "FBKVOController-iOS-Dynamic";
 		};
-		83C592A31D1A31C700942D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83C5928E1D1A31C700942D20 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83C592961D1A31C700942D20;
-			remoteInfo = AllYourMemoriesAreBelong2iOS;
-		};
 		83C592D21D1A325100942D20 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83C5928E1D1A31C700942D20 /* Project object */;
@@ -148,7 +139,6 @@
 		83C592971D1A31C700942D20 /* AllYourMemoriesAreBelong2iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AllYourMemoriesAreBelong2iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C5929A1D1A31C700942D20 /* AllYourMemoriesAreBelong2iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllYourMemoriesAreBelong2iOS.h; sourceTree = "<group>"; };
 		83C5929C1D1A31C700942D20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83C592A11D1A31C700942D20 /* AllYourMemoriesAreBelong2iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllYourMemoriesAreBelong2iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C592A61D1A31C700942D20 /* AllYourMemoriesAreBelong2iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllYourMemoriesAreBelong2iOSTests.m; sourceTree = "<group>"; };
 		83C592A81D1A31C700942D20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83C592B21D1A31D400942D20 /* AllYourMemoriesAreBelong2iOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllYourMemoriesAreBelong2iOS.m; sourceTree = "<group>"; };
@@ -178,14 +168,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83C5929E1D1A31C700942D20 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83C592A21D1A31C700942D20 /* AllYourMemoriesAreBelong2iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				83C592971D1A31C700942D20 /* AllYourMemoriesAreBelong2iOS.framework */,
-				83C592A11D1A31C700942D20 /* AllYourMemoriesAreBelong2iOSTests.xctest */,
 				83C592B91D1A324100942D20 /* Example0-iOS.app */,
 				833C6EB51D1A40470034A022 /* Example1-iOS.app */,
 			);
@@ -365,24 +346,6 @@
 			productReference = 83C592971D1A31C700942D20 /* AllYourMemoriesAreBelong2iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		83C592A01D1A31C700942D20 /* AllYourMemoriesAreBelong2iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 83C592AE1D1A31C700942D20 /* Build configuration list for PBXNativeTarget "AllYourMemoriesAreBelong2iOSTests" */;
-			buildPhases = (
-				83C5929D1D1A31C700942D20 /* Sources */,
-				83C5929E1D1A31C700942D20 /* Frameworks */,
-				83C5929F1D1A31C700942D20 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				83C592A41D1A31C700942D20 /* PBXTargetDependency */,
-			);
-			name = AllYourMemoriesAreBelong2iOSTests;
-			productName = AllYourMemoriesAreBelong2iOSTests;
-			productReference = 83C592A11D1A31C700942D20 /* AllYourMemoriesAreBelong2iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		83C592B81D1A324100942D20 /* Example0-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83C592CD1D1A324100942D20 /* Build configuration list for PBXNativeTarget "Example0-iOS" */;
@@ -413,15 +376,14 @@
 				TargetAttributes = {
 					833C6EB41D1A40470034A022 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 89BSC2UYH8;
 					};
 					83C592961D1A31C700942D20 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
-					83C592A01D1A31C700942D20 = {
-						CreatedOnToolsVersion = 7.3.1;
-					};
 					83C592B81D1A324100942D20 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 89BSC2UYH8;
 					};
 				};
 			};
@@ -445,7 +407,6 @@
 			projectRoot = "";
 			targets = (
 				83C592961D1A31C700942D20 /* AllYourMemoriesAreBelong2iOS */,
-				83C592A01D1A31C700942D20 /* AllYourMemoriesAreBelong2iOSTests */,
 				83C592B81D1A324100942D20 /* Example0-iOS */,
 				833C6EB41D1A40470034A022 /* Example1-iOS */,
 			);
@@ -515,13 +476,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83C5929F1D1A31C700942D20 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		83C592B71D1A324100942D20 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -553,14 +507,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83C5929D1D1A31C700942D20 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83C592A71D1A31C700942D20 /* AllYourMemoriesAreBelong2iOSTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		83C592B51D1A324100942D20 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -584,11 +530,6 @@
 			isa = PBXTargetDependency;
 			name = "FBKVOController-iOS-Dynamic";
 			targetProxy = 833C6F211D1AB71C0034A022 /* PBXContainerItemProxy */;
-		};
-		83C592A41D1A31C700942D20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83C592961D1A31C700942D20 /* AllYourMemoriesAreBelong2iOS */;
-			targetProxy = 83C592A31D1A31C700942D20 /* PBXContainerItemProxy */;
 		};
 		83C592D31D1A325100942D20 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -637,6 +578,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 89BSC2UYH8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "Example1-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -649,6 +591,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 89BSC2UYH8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "Example1-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -679,7 +622,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -729,7 +672,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -781,30 +724,11 @@
 			};
 			name = Release;
 		};
-		83C592AF1D1A31C700942D20 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = AllYourMemoriesAreBelong2iOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.AllYourMemoriesAreBelong2iOSTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		83C592B01D1A31C700942D20 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = AllYourMemoriesAreBelong2iOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.AllYourMemoriesAreBelong2iOSTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		83C592CE1D1A324100942D20 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 89BSC2UYH8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "Example0-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -817,6 +741,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 89BSC2UYH8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "Example0-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -851,15 +776,6 @@
 			buildConfigurations = (
 				83C592AC1D1A31C700942D20 /* Debug */,
 				83C592AD1D1A31C700942D20 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		83C592AE1D1A31C700942D20 /* Build configuration list for PBXNativeTarget "AllYourMemoriesAreBelong2iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				83C592AF1D1A31C700942D20 /* Debug */,
-				83C592B01D1A31C700942D20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
