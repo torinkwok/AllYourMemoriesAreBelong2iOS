@@ -2,7 +2,7 @@
 
 [Yep](https://en.wikipedia.org/wiki/All_your_base_are_belong_to_us).
 
-### What's this
+### What's this?
 
 A frequently asked question on StackOverflow.net:
 
@@ -10,7 +10,7 @@ A frequently asked question on StackOverflow.net:
 
 > The reason I can't use the simulator is my app uses Game Center and invites don't work on the simulator.
 
-Okay, this tool simulates iOS on-device memory warnings like a hero.
+Well, it has just become pretty easy to simulate iOS on-device memory warnings through linking *AllYourMemoriesAreBelong2iOS*.
 
 ![pod-validablity-badge](https://cocoapod-badges.herokuapp.com/v/AllYourMemoriesAreBelong2iOS/badge.png)
 ![version-badge](https://cocoapod-badges.herokuapp.com/p/AllYourMemoriesAreBelong2iOS/badge.png)
@@ -18,25 +18,37 @@ Okay, this tool simulates iOS on-device memory warnings like a hero.
 
 ### Features
 
-* It induces memory warnings through pressing the physical **volume button** on iOS devices
+* Induces memory warnings through simply pressing the physical **volume button** on iOS devices
 
-* It works *transparently*. In other words, to use *AllYourMemoriesAreBelong2iOS*, you need just linking this framework into your app and hit the `Run` button to build and then run the **Debug** scheme. You will never be asked to configure anything and the debug codes in this framework will never be shipped in releasing version
+* Works *transparently*. In the other words, to use *AllYourMemoriesAreBelong2iOS*, all you have to do is just to link this framework into your app and hit the `Run` button to build/run the **Debug** scheme. You would never be bothered configuring anything. Also, the debug codes within this framework would never be shipped in releasing version
 
-* It supports hot-swapability for [KVOController](https://github.com/facebook/KVOController) from Facebook. In other words, if your app has linked *KVOController.framework*, the internal mechanism of *AllYourMemoriesAreBelong2iOS* would take advantage of it, otherwise the raw KVO API would be applied instead
+* Supports hot-swapability for [*facebook/KVOController*](https://github.com/facebook/KVOController). That is to say, once your app has linked to *KVOController.framework*, the internal mechanism of *AllYourMemoriesAreBelong2iOS* would take advantage of it automatically, otherwise the raw KVO API will be choosen instead
 
-### How to use
+### Installation
 
-1. Clone and incorporate this repo into your project with `git submodule`:
+#### CocoaPods
+
+To install using [*CocoaPods*](https://github.com/cocoapods/cocoapods), add the following to your project Podfile:
+
+```
+pod 'AllYourMemoriesAreBelong2iOS', '~>1.0.2'
+```
+
+#### Git Submodule
+
+1. Clone and incorporate this repo into your project with `git submodule` command:
 	
 	`git submodule add https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS.git ${YOUR_DIR} --recursive`
 
-2. Hit `File` -> `Add Files to "${YOUR_PROJECT_NAME}"` item in Xcode menu bar, then choose the `AllYourMemoriesAreBelong2iOS.xcodeproj`
+2. Click `File` -> `Add Files to "${YOUR_PROJECT_NAME}"` item in Xcode menu bar. Choose the `AllYourMemoriesAreBelong2iOS.xcodeproj`
 
-3. Link *AllYourMemoriesAreBelong2iOS* in `General` panel
+3. Embed *AllYourMemoriesAreBelong2iOS* in `General` panel
 
-4. Make sure build and run your project in **Debug** scheme. *AllYourMemoriesAreBelong2iOS* includes the invocation of Apple private API, its implementation was masked in releasing version as it will be rejected by Apple
+### Usage
 
-5. Press physical volume button on your iOS devices to induce the system memory warnings. You will want to process those notifications in [`didReceiveMemoryWarning`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621409-didreceivememorywarning?language=objc) or [`applicationDidReceiveMemoryWarning:`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/#//apple_ref/occ/intfm/UIApplicationDelegate/applicationDidReceiveMemoryWarning:) method in the **ViewControllers** or **AppDelegate**
+1. Make sure that your project is being built with the **Debug** scheme. Invocations to Apple private APIs made *AllYourMemoriesAreBelong2iOS* possible, hence its implementation was masked in releasing version as there's a distinct possibility that your app will be rejected by Apple
+
+2. Press physical volume buttons on your iOS devices to induce the system memory warnings. You will want to process those notifications in [`didReceiveMemoryWarning`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621409-didreceivememorywarning?language=objc) or [`applicationDidReceiveMemoryWarning:`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/#//apple_ref/occ/intfm/UIApplicationDelegate/applicationDidReceiveMemoryWarning:) method in the **ViewControllers** or **AppDelegate**
 
 ### Author
 
