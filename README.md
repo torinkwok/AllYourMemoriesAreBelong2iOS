@@ -20,7 +20,7 @@ Well, *AllYourMemoriesAreBelong2iOS* is an elegant solution. With it, it became 
 
 * Induces memory warnings through simply pressing the physical **volume buttons** on iOS devices (like a hero)
 
-* Works *transparently*. In the other words, to use *AllYourMemoriesAreBelong2iOS*, all you have to do is just to link this framework into your app and hit the `Run` button to build/run the **Debug** scheme. You would never be bothered configuring anything. Also, the debug codes within this framework would never be shipped in releasing version
+* Works *transparently*. To use *AllYourMemoriesAreBelong2iOS*, all you have to do is just to link this framework to your app and hit the `Run` button to build/run the **Debug** scheme. You would never be bothered configuring anything. Also, the debug codes within this framework would never be shipped in releasing version
 
 * Supports hot-swapability for [*facebook/KVOController*](https://github.com/facebook/KVOController). That is to say, once your app has linked to *KVOController.framework*, the internal mechanism of *AllYourMemoriesAreBelong2iOS* would take advantage of it automatically, otherwise the raw KVO API will be choosen instead
 
