@@ -37,11 +37,12 @@ pod 'AllYourMemoriesAreBelong2iOS', '~>1.0.2'
 #### Git Submodule
 
 1. Clone and incorporate this repo into your project with `git submodule` command:
-```
-git submodule add https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS.git ${YOUR_DIR} --recursive`
+
+``` shell
+git submodule add https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS.git "$SRC_ROOT" --recursive`
 ```
 
-2. Click `File` -> `Add Files to "${YOUR_PROJECT_NAME}"` item in Xcode menu bar. Choose the `AllYourMemoriesAreBelong2iOS.xcodeproj`
+2. Click `File` -> `Add Files to "$PROJECT_NAME"` item in Xcode menu bar. Choose the `AllYourMemoriesAreBelong2iOS.xcodeproj`
 
 3. Embed *AllYourMemoriesAreBelong2iOS* in `General` panel
 
