@@ -18,7 +18,7 @@ Well, *AllYourMemoriesAreBelong2iOS* is an elegant solution. With it, it became 
 
 ### Features
 
-* Induces memory warnings through simply pressing the physical **volume button** on iOS devices
+* Induces memory warnings through simply pressing the physical **volume buttons** on iOS devices (like a hero)
 
 * Works *transparently*. In the other words, to use *AllYourMemoriesAreBelong2iOS*, all you have to do is just to link this framework into your app and hit the `Run` button to build/run the **Debug** scheme. You would never be bothered configuring anything. Also, the debug codes within this framework would never be shipped in releasing version
 
