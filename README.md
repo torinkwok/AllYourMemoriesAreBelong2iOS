@@ -46,7 +46,7 @@ github "TorinKwok/AllYourMemoriesAreBelong2iOS" ~> 1.0.3
 To install using [*CocoaPods*](https://github.com/cocoapods/cocoapods), add the following to your project Podfile:
 
 ``` ruby
-pod 'AllYourMemoriesAreBelong2iOS', '~>1.0.2'
+pod 'AllYourMemoriesAreBelong2iOS', '~>1.0.3'
 ```
 
 #### Git Submodule
