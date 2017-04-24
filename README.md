@@ -29,7 +29,9 @@ A kind of questions frequently asked on StackOverflow:
 
 #### Carthage
 
-If you use [Carthage](https://github.com/Carthage/Carthage) to manage your dependencies, simply add *AllYourMemoriesAreBelong2iOS* to your `Cartfile`:
+If you use [Carthage](https://github.com/Carthage/Carthage) to manage your dependencies:
+
+1. Simply add *AllYourMemoriesAreBelong2iOS* to your `Cartfile`:
 
 ```
 github "TorinKwok/AllYourMemoriesAreBelong2iOS" ~> 1.0.3
