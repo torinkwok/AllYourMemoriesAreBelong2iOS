@@ -35,6 +35,10 @@ If you use [Carthage](https://github.com/Carthage/Carthage) to manage your depen
 github "TorinKwok/AllYourMemoriesAreBelong2iOS" ~> 1.0.3
 ```
 
+2. Click `File` -> `Add Files to "$PROJECT_NAME"` item in Xcode menu bar. Choose the `AllYourMemoriesAreBelong2iOS.xcodeproj`
+
+3. Embed *AllYourMemoriesAreBelong2iOS* in `General` panel
+
 #### CocoaPods
 
 To install using [*CocoaPods*](https://github.com/cocoapods/cocoapods), add the following to your project Podfile:
@@ -51,9 +55,7 @@ pod 'AllYourMemoriesAreBelong2iOS', '~>1.0.2'
 git submodule add https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS.git "$SRC_ROOT" --recursive`
 ```
 
-2. Click `File` -> `Add Files to "$PROJECT_NAME"` item in Xcode menu bar. Choose the `AllYourMemoriesAreBelong2iOS.xcodeproj`
-
-3. Embed *AllYourMemoriesAreBelong2iOS* in `General` panel
+2. The remaining steps are identical to the last two in **Carthage** section
 
 ### Usage
 
