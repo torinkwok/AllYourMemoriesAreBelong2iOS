@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = "AllYourMemoriesAreBelong2iOS"
-  s.version       = "1.0.2"
+  s.version       = "1.0.3"
   s.summary       = "Simulate iOS on-device memory warnings like a hero."
 
   s.homepage      = "https://github.com/TorinKwok/AllYourMemoriesAreBelong2iOS"

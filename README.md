@@ -12,6 +12,7 @@ A kind of questions frequently asked on StackOverflow:
 
 *AllYourMemoriesAreBelong2iOS* is an elegant solution to those problems. With using it, it became incredibly easy to simulate iOS on-device memory warnings.
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ![pod-validablity-badge](https://cocoapod-badges.herokuapp.com/v/AllYourMemoriesAreBelong2iOS/badge.png)
 ![version-badge](https://cocoapod-badges.herokuapp.com/p/AllYourMemoriesAreBelong2iOS/badge.png)
 ![license-badge](https://cocoapod-badges.herokuapp.com/l/AllYourMemoriesAreBelong2iOS/badge.svg)
@@ -25,6 +26,14 @@ A kind of questions frequently asked on StackOverflow:
 * Supports hot-swapability for [*facebook/KVOController*](https://github.com/facebook/KVOController). That is to say, once your app has linked to *KVOController.framework*, the internal mechanism of *AllYourMemoriesAreBelong2iOS* would take advantage of it automatically, otherwise the raw KVO API will be choosen instead
 
 ### Installation
+
+#### Carthage
+
+If you use [Carthage](https://github.com/Carthage/Carthage) to manage your dependencies, simply add *AllYourMemoriesAreBelong2iOS* to your `Cartfile`:
+
+```
+github "TorinKwok/AllYourMemoriesAreBelong2iOS" ~> 1.0.3
+```
 
 #### CocoaPods
 
